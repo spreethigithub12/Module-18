@@ -24,12 +24,47 @@ To write a Python program to find the shortest possible route that visits every 
 ## PYTHON PROGRAM
 
 ```
-ENTER YOUR CODE HERE
+Reg.No: 212222060182
+Name: Preethika S
+
+import itertools
+
+def tsp_brute_force(distance_matrix):
+    num_cities = len(distance_matrix)
+    cities = list(range(1, num_cities))
+    min_cost = float('inf')
+    best_route = []
+
+    for perm in itertools.permutations(cities):
+        current_cost = 0
+        k = 0
+        for j in perm:
+            current_cost += distance_matrix[k][j]
+            k = j
+        current_cost += distance_matrix[k][0]
+
+        if current_cost < min_cost:
+            min_cost = current_cost
+            best_route = [0] + list(perm) + [0]
+
+    return best_route, min_cost
+
+distance_matrix = [
+    [0, 10, 15, 20],
+    [10, 0, 35, 25],
+    [15, 35, 0, 30],
+    [20, 25, 30, 0]
+]
+
+route, cost = tsp_brute_force(distance_matrix)
+print("Shortest Route:", route)
+print("Minimum Cost:", cost)
+
 ```
 
 ## OUTPUT
-```
-```
+![image](https://github.com/user-attachments/assets/33e51929-1605-44bf-86d5-b36bad09e24d)
 
-##RESULT
 
+## RESULT
+Thus,the python program to find the shortest possible route that visits every city exactly once and returns to the starting point using the Travelling Salesman Problem (TSP) approach has been executed and verified successfully.
